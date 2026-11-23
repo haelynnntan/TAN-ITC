@@ -5,9 +5,11 @@
   --text-main: #0f172a;
   --text-muted: #475569;
   --border: #cbd5e1;
-  --accent: #0d9488;       /* Teal accent — change this hex code to customize */
+  --accent: #0d9488;
   --accent-soft: #f0fdfa;
   --accent-dark: #0f766e;
+  --danger: #dc2626;
+  --danger-soft: #fef2f2;
 }
 
 * {
@@ -89,45 +91,49 @@ body {
   border-radius: 14px;
   max-width: 780px;
   width: 100%;
-  padding: 3rem 2.5rem;
+  padding: 2.75rem 2.25rem;
   text-align: center;
   box-shadow: 0 12px 30px rgba(15, 23, 42, 0.07);
 }
 
+.main-card.wide {
+  max-width: 960px;
+}
+
 .main-card h1 {
-  font-size: clamp(1.45rem, 3vw, 1.95rem);
+  font-size: clamp(1.4rem, 3vw, 1.9rem);
   font-weight: 700;
   color: var(--text-main);
-  margin-bottom: 0.6rem;
+  margin-bottom: 0.5rem;
 }
 
 .subtitle {
   font-style: italic;
   color: var(--text-muted);
-  font-size: 1rem;
-  margin-bottom: 1.75rem;
+  font-size: 0.98rem;
+  margin-bottom: 1.5rem;
 }
 
 .divider {
   border: none;
   border-top: 1px solid #e2e8f0;
   margin: 0 auto 1.75rem;
-  max-width: 85%;
+  max-width: 90%;
 }
 
 .main-card h2 {
-  font-size: 1.2rem;
+  font-size: 1.15rem;
   font-weight: 700;
-  margin-bottom: 1.75rem;
+  margin-bottom: 1.5rem;
   color: var(--text-main);
 }
 
-/* Assignment Links List */
+/* Homepage Assignment List */
 .assignment-list {
   list-style: none;
   display: flex;
   flex-direction: column;
-  gap: 1.25rem;
+  gap: 1.2rem;
   max-width: 640px;
   margin: 0 auto;
 }
@@ -135,7 +141,6 @@ body {
 .assignment-list li {
   font-size: 0.98rem;
   line-height: 1.55;
-  color: var(--text-main);
 }
 
 .assignment-list a {
@@ -143,9 +148,198 @@ body {
   font-weight: 700;
   text-decoration: underline;
   text-underline-offset: 3px;
-  transition: color 0.2s;
 }
 
 .assignment-list a:hover {
   color: var(--accent);
+}
+
+/* Calculator Forms & Inputs */
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  text-align: left;
+  margin-bottom: 1.25rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  text-align: left;
+  margin-bottom: 1rem;
+}
+
+.form-grid .form-group {
+  margin-bottom: 0;
+}
+
+label {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text-main);
+}
+
+input[type="number"],
+input[type="text"],
+select {
+  width: 100%;
+  padding: 0.68rem 0.85rem;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  font-size: 0.98rem;
+  color: var(--text-main);
+  background-color: #f8fafc;
+  transition: border-color 0.2s, background-color 0.2s;
+}
+
+input:focus,
+select:focus {
+  outline: none;
+  border-color: var(--accent);
+  background-color: #ffffff;
+}
+
+/* Buttons */
+.btn-row {
+  display: flex;
+  justify-content: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  margin-top: 0.5rem;
+}
+
+.btn {
+  padding: 0.68rem 1.35rem;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s, transform 0.1s;
+}
+
+.btn:active {
+  transform: scale(0.98);
+}
+
+.btn-primary {
+  background-color: var(--accent);
+  color: #ffffff;
+}
+
+.btn-primary:hover {
+  background-color: var(--accent-dark);
+}
+
+.btn-secondary {
+  background-color: #e2e8f0;
+  color: var(--text-main);
+}
+
+.btn-secondary:hover {
+  background-color: #cbd5e1;
+}
+
+.btn-danger {
+  background-color: var(--danger-soft);
+  color: var(--danger);
+  border: 1px solid #fecaca;
+  padding: 0.35rem 0.7rem;
+  font-size: 0.85rem;
+}
+
+.btn-danger:hover {
+  background-color: var(--danger);
+  color: #ffffff;
+}
+
+/* Result Output Boxes */
+.result-box {
+  margin-top: 1.5rem;
+  padding: 1.25rem;
+  background-color: var(--accent-soft);
+  border: 1px solid #99f6e4;
+  border-radius: 10px;
+  text-align: left;
+}
+
+.result-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.stat-card {
+  background-color: var(--accent-soft);
+  border: 1px solid #99f6e4;
+  border-radius: 10px;
+  padding: 1.1rem;
+  text-align: center;
+}
+
+.stat-label {
+  font-size: 0.82rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--accent-dark);
+  margin-bottom: 0.35rem;
+}
+
+.stat-value {
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: var(--text-main);
+  word-break: break-word;
+}
+
+/* Data & Reference Tables */
+.table-wrapper {
+  overflow-x: auto;
+  margin-top: 1.5rem;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.92rem;
+  text-align: left;
+}
+
+th, td {
+  padding: 0.72rem 0.85rem;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+th {
+  background-color: #f1f5f9;
+  font-weight: 700;
+  color: var(--text-main);
+}
+
+tr:hover td {
+  background-color: #f8fafc;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.back-link {
+  display: inline-block;
+  margin-top: 1.75rem;
+  color: var(--text-muted);
+  text-decoration: none;
+  font-size: 0.92rem;
+  font-weight: 600;
+}
+
+.back-link:hover {
+  color: var(--accent-dark);
 }
