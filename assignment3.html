@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Assignment #3 - Natural Numbers</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <nav class="navbar">
+    <a href="index.html" class="brand">YourName<span>.ITC</span></a>
+    <div class="nav-tabs">
+      <a href="assignment1.html">Assignment 1</a>
+      <a href="assignment2.html">Assignment 2</a>
+      <a href="assignment3.html" class="active">Assignment 3</a>
+      <a href="assignment4.html">Assignment 4</a>
+    </div>
+  </nav>
+
+  <main class="page-wrapper">
+    <div class="main-card">
+      <h1>Assignment #3: Natural Numbers</h1>
+      <p class="subtitle">Factorial (While Loop), Sum (Do-While Loop), and Average (For Loop)</p>
+      <hr class="divider" />
+
+      <div class="form-group" style="max-width: 360px; margin: 0 auto 1.25rem;">
+        <label for="numberInput">Enter a Positive Integer (N)</label>
+        <input type="number" id="numberInput" placeholder="e.g., 5" min="1" step="1" />
+      </div>
+
+      <div class="btn-row">
+        <button class="btn btn-primary" onclick="computeLoops()">Compute</button>
+        <button class="btn btn-secondary" onclick="clearLoops()">Clear</button>
+      </div>
+
+      <div class="result-grid">
+        <div class="stat-card">
+          <div class="stat-label">Factorial (While Loop)</div>
+          <div class="stat-value" id="factorialOut">—</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Sum (Do-While Loop)</div>
+          <div class="stat-value" id="sumOut">—</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Average (For Loop)</div>
+          <div class="stat-value" id="avgOut">—</div>
+        </div>
+      </div>
+
+      <a href="index.html" class="back-link">← Back to Home</a>
+    </div>
+  </main>
+
+  <script>
+    function computeLoops() {
+      const n = parseInt(document.getElementById("numberInput").value, 10);
+
+      if (isNaN(n) || n < 1) {
+        alert("Please enter a positive integer (1 or greater).");
+        return;
+      }
+
+      // 1. Factorial using a WHILE loop
+      let factorial = 1;
+      let i = 1;
+      while (i <= n) {
+        factorial *= i;
+        i++;
+      }
+
+      // 2. Sum of first N natural numbers using a DO-WHILE loop
+      let sum = 0;
+      let j = 1;
+      do {
+        sum += j;
+        j++;
+      } while (j <= n);
+
+      // 3. Average of first N natural numbers using a FOR loop
+      let totalForAvg = 0;
+      for (let k = 1; k <= n; k++) {
+        totalForAvg += k;
+      }
+      const average = totalForAvg / n;
+
+      document.getElementById("factorialOut").textContent = factorial.toLocaleString();
+      document.getElementById("sumOut").textContent = sum.toLocaleString();
+      document.getElementById("avgOut").textContent = average.toFixed(2);
+    }
+
+    function clearLoops() {
+      document.getElementById("numberInput").value = "";
+      document.getElementById("factorialOut").textContent = "—";
+      document.getElementById("sumOut").textContent = "—";
+      document.getElementById("avgOut").textContent = "—";
+    }
+  </script>
+
+</body>
+</html>
