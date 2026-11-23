@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Assignment #2 - Income Tax Calculator</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <nav class="navbar">
+    <a href="index.html" class="brand">YourName<span>.ITC</span></a>
+    <div class="nav-tabs">
+      <a href="assignment1.html">Assignment 1</a>
+      <a href="assignment2.html" class="active">Assignment 2</a>
+      <a href="assignment3.html">Assignment 3</a>
+      <a href="assignment4.html">Assignment 4</a>
+    </div>
+  </nav>
+
+  <main class="page-wrapper">
+    <div class="main-card">
+      <h1>Assignment #2: Income Tax Calculator</h1>
+      <p class="subtitle">Compute annual income tax based on taxable income brackets</p>
+      <hr class="divider" />
+
+      <div class="form-group" style="max-width: 420px; margin: 0 auto 1.25rem;">
+        <label for="taxableIncome">Annual Taxable Income (₱)</label>
+        <input type="number" id="taxableIncome" placeholder="e.g., 520000" min="0" step="any" />
+      </div>
+
+      <div class="btn-row">
+        <button class="btn btn-primary" onclick="calculateTax()">Compute Tax</button>
+        <button class="btn btn-secondary" onclick="clearTax()">Clear</button>
+      </div>
+
+      <div class="result-grid">
+        <div class="stat-card">
+          <div class="stat-label">Basic Tax</div>
+          <div class="stat-value" id="basicTax">₱0.00</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Tax on Excess</div>
+          <div class="stat-value" id="excessTax">₱0.00</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Total Income Tax Due</div>
+          <div class="stat-value" id="totalTax">₱0.00</div>
+        </div>
+      </div>
+
+      <div class="table-wrapper">
+        <table>
+          <thead>
+            <tr>
+              <th>Annual Taxable Income</th>
+              <th>Tax Rate</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>₱250,000 and below</td><td>0% (Exempt)</td></tr>
+            <tr><td>Over ₱250,000 to ₱400,000</td><td>15% of the excess over ₱250,000</td></tr>
+            <tr><td>Over ₱400,000 to ₱800,000</td><td>₱22,500 + 20% of the excess over ₱400,000</td></tr>
+            <tr><td>Over ₱800,000 to ₱2,000,000</td><td>₱102,500 + 25% of the excess over ₱800,000</td></tr>
+            <tr><td>Over ₱2,000,000 to ₱8,000,000</td><td>₱402,500 + 30% of the excess over ₱2,000,000</td></tr>
+            <tr><td>Over ₱8,000,000</td><td>₱2,202,500 + 35% of the excess over ₱8,000,000</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <a href="index.html" class="back-link">← Back to Home</a>
+    </div>
+  </main>
+
+  <script>
+    function formatPeso(amount) {
+      return "₱" + amount.toLocaleString("en-US", {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2
+      });
+    }
+
+    function calculateTax() {
+      const raw = document.getElementById("taxableIncome").value;
+      if (raw === "" || parseFloat(raw) < 0) {
+        alert("Please enter a valid non-negative taxable income.");
+        return;
+      }
+
+      const income = parseFloat(raw);
+      let basic = 0;
+      let excess = 0;
+
+      if (income <= 250000) {
+        basic = 0;
+        excess = 0;
+      } else if (income <= 400000) {
+        basic = 0;
+        excess = (income - 250000) * 0.15;
+      } else if (income <= 800000) {
+        basic = 22500;
+        excess = (income - 400000) * 0.20;
+      } else if (income <= 2000000) {
+        basic = 102500;
+        excess = (income - 800000) * 0.25;
+      } else if (income <= 8000000) {
+        basic = 402500;
+        excess = (income - 2000000) * 0.30;
+      } else {
+        basic = 2202500;
+        excess = (income - 8000000) * 0.35;
+      }
+
+      const total = basic + excess;
+
+      document.getElementById("basicTax").textContent = formatPeso(basic);
+      document.getElementById("excessTax").textContent = formatPeso(excess);
+      document.getElementById("totalTax").textContent = formatPeso(total);
+    }
+
+    function clearTax() {
+      document.getElementById("taxableIncome").value = "";
+      document.getElementById("basicTax").textContent = "₱0.00";
+      document.getElementById("excessTax").textContent = "₱0.00";
+      document.getElementById("totalTax").textContent = "₱0.00";
+    }
+  </script>
+
+</body>
+</html>
