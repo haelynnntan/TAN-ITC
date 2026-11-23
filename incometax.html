@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Assignment 2 - Income Tax Calculator</title>
+  <style>
+    body { font-family: Arial, sans-serif; background: #f4f6f9; margin: 0; padding: 20px; }
+    .nav { max-width: 600px; margin: 0 auto 20px; }
+    .nav a { color: #1e3a8a; text-decoration: none; font-weight: bold; }
+    .box { max-width: 600px; margin: 0 auto; background: white; padding: 24px; border-radius: 8px; box-shadow: 0 2px 6px rgba(0,0,0,0.08); }
+    h2 { margin-top: 0; color: #1e3a8a; }
+    input { padding: 10px; width: 220px; margin-right: 10px; border: 1px solid #ccc; border-radius: 4px; }
+    button { padding: 10px 16px; background: #1e3a8a; color: white; border: none; border-radius: 4px; cursor: pointer; }
+    .result { margin-top: 16px; font-size: 18px; font-weight: bold; color: #0f172a; }
+  </style>
+</head>
+<body>
+  <div class="nav"><a href="index.html">&larr; Back to Home</a></div>
+
+  <div class="box">
+    <h2>Assignment #2: Income Tax Calculator</h2>
+    <p>Enter your Annual Taxable Income (PHP):</p>
+    <input type="number" id="income" placeholder="e.g. 500000" min="0">
+    <button onclick="computeTax()">Compute Tax</button>
+    <div class="result" id="taxResult"></div>
+  </div>
+
+  <script>
+    function computeTax() {
+      let income = parseFloat(document.getElementById("income").value);
+      if (isNaN(income) || income < 0) {
+        document.getElementById("taxResult").innerText = "Please enter a valid positive income.";
+        return;
+      }
+
+      let tax = 0;
+      if (income <= 250000) {
+        tax = 0;
+      } else if (income <= 400000) {
+        tax = (income - 250000) * 0.15;
+      } else if (income <= 800000) {
+        tax = 22500 + (income - 400000) * 0.20;
+      } else if (income <= 2000000) {
+        tax = 102500 + (income - 800000) * 0.25;
+      } else if (income <= 8000000) {
+        tax = 402500 + (income - 2000000) * 0.30;
+      } else {
+        tax = 2202500 + (income - 8000000) * 0.35;
+      }
+
+      document.getElementById("taxResult").innerText =
+        "Income Tax Due: ₱" + tax.toLocaleString("en-PH", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+    }
+  </script>
+</body>
+</html>
