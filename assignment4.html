@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Assignment #4 - Simple Payroll</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <nav class="navbar">
+    <a href="index.html" class="brand">YourName<span>.ITC</span></a>
+    <div class="nav-tabs">
+      <a href="assignment1.html">Assignment 1</a>
+      <a href="assignment2.html">Assignment 2</a>
+      <a href="assignment3.html">Assignment 3</a>
+      <a href="assignment4.html" class="active">Assignment 4</a>
+    </div>
+  </nav>
+
+  <main class="page-wrapper">
+    <div class="main-card wide">
+      <h1>Assignment #4: Simple Payroll</h1>
+      <p class="subtitle">Manage employee payroll records, gross pay, deductions, and net pay</p>
+      <hr class="divider" />
+
+      <div class="form-grid">
+        <div class="form-group">
+          <label for="empName">Employee Name</label>
+          <input type="text" id="empName" placeholder="e.g., Juan Dela Cruz" />
+        </div>
+        <div class="form-group">
+          <label for="daysWorked">Days Worked</label>
+          <input type="number" id="daysWorked" placeholder="e.g., 15" min="0" step="any" />
+        </div>
+        <div class="form-group">
+          <label for="dailyRate">Daily Rate (₱)</label>
+          <input type="number" id="dailyRate" placeholder="e.g., 650" min="0" step="any" />
+        </div>
+        <div class="form-group">
+          <label for="deduction">Deduction Amount (₱)</label>
+          <input type="number" id="deduction" placeholder="e.g., 500" min="0" step="any" />
+        </div>
+      </div>
+
+      <div class="btn-row">
+        <button class="btn btn-primary" onclick="addEmployee()">Add Employee</button>
+        <button class="btn btn-secondary" onclick="clearPayroll()">Clear All</button>
+      </div>
+
+      <div class="table-wrapper">
+        <table>
+          <thead>
+            <tr>
+              <th class="text-center">No.</th>
+              <th>Employee Name</th>
+              <th class="text-right">Days Worked</th>
+              <th class="text-right">Daily Rate</th>
+              <th class="text-right">Gross Pay</th>
+              <th class="text-right">Deduction</th>
+              <th class="text-right">Net Pay</th>
+              <th class="text-center">Action</th>
+            </tr>
+          </thead>
+          <tbody id="payrollBody">
+            <tr>
+              <td colspan="8" class="text-center" style="color: #64748b;">
+                No employees added yet. Fill in the fields above and click "Add Employee".
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <a href="index.html" class="back-link">← Back to Home</a>
+    </div>
+  </main>
+
+  <script>
+    let payrollList = [];
+
+    function formatMoney(num) {
+      return "₱" + num.toLocaleString("en-US", {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2
+      });
+    }
+
+    function addEmployee() {
+      const name = document.getElementById("empName").value.trim();
+      const days = parseFloat(document.getElementById("daysWorked").value);
+      const rate = parseFloat(document.getElementById("dailyRate").value);
+      const deduction = parseFloat(document.getElementById("deduction").value);
+
+      if (!name || isNaN(days) || isNaN(rate) || isNaN(deduction)) {
+        alert("Please complete all employee fields with valid numbers.");
+        return;
+      }
+
+      if (days < 0 || rate < 0 || deduction < 0) {
+        alert("Days worked, daily rate, and deduction cannot be negative.");
+        return;
+      }
+
+      const grossPay = days * rate;
+      const netPay = grossPay - deduction;
+
+      payrollList.push({
+        name: name,
+        days: days,
+        rate: rate,
+        grossPay: grossPay,
+        deduction: deduction,
+        netPay: netPay
+      });
+
+      document.getElementById("empName").value = "";
+      document.getElementById("daysWorked").value = "";
+      document.getElementById("dailyRate").value = "";
+      document.getElementById("deduction").value = "";
+
+      renderTable();
+    }
+
+    function deleteEmployee(index) {
+      if (confirm(`Delete record #${index + 1} (${payrollList[index].name})?`)) {
+        payrollList.splice(index, 1);
+        renderTable();
+      }
+    }
+
+    function clearPayroll() {
+      if (payrollList.length === 0) return;
+      if (confirm("Are you sure you want to clear all payroll records?")) {
+        payrollList = [];
+        renderTable();
+      }
+    }
+
+    function renderTable() {
+      const tbody = document.getElementById("payrollBody");
+
+      if (payrollList.length === 0) {
+        tbody.innerHTML = `
+          <tr>
+            <td colspan="8" class="text-center" style="color: #64748b;">
+              No employees added yet. Fill in the fields above and click "Add Employee".
+            </td>
+          </tr>`;
+        return;
+      }
+
+      let rowsHtml = "";
+      for (let i = 0; i < payrollList.length; i++) {
+        const emp = payrollList[i];
+        rowsHtml += `
+          <tr>
+            <td class="text-center">${i + 1}</td>
+            <td>${emp.name}</td>
+            <td class="text-right">${emp.days}</td>
+            <td class="text-right">${formatMoney(emp.rate)}</td>
+            <td class="text-right">${formatMoney(emp.grossPay)}</td>
+            <td class="text-right">${formatMoney(emp.deduction)}</td>
+            <td class="text-right"><strong>${formatMoney(emp.netPay)}</strong></td>
+            <td class="text-center">
+              <button class="btn btn-danger" onclick="deleteEmployee(${i})">Delete</button>
+            </td>
+          </tr>`;
+      }
+
+      tbody.innerHTML = rowsHtml;
+    }
+  </script>
+
+</body>
+</html>
