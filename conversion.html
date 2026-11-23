@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Assignment 1 - Unit Conversion</title>
+  <style>
+    body { font-family: Arial, sans-serif; background: #f4f6f9; margin: 0; padding: 20px; }
+    .nav { max-width: 700px; margin: 0 auto 20px; }
+    .nav a { color: #1e3a8a; text-decoration: none; font-weight: bold; }
+    .box { max-width: 700px; margin: 0 auto 16px; background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 6px rgba(0,0,0,0.08); }
+    h2 { margin-top: 0; color: #1e3a8a; }
+    input { padding: 8px; width: 180px; margin-right: 10px; border: 1px solid #ccc; border-radius: 4px; }
+    button { padding: 8px 14px; background: #1e3a8a; color: white; border: none; border-radius: 4px; cursor: pointer; }
+    .result { margin-top: 10px; font-weight: bold; color: #0f172a; }
+  </style>
+</head>
+<body>
+  <div class="nav"><a href="index.html">&larr; Back to Home</a></div>
+
+  <div class="box">
+    <h2>Assignment #1: Unit Conversion</h2>
+
+    <h3>1. Celsius to Fahrenheit</h3>
+    <input type="number" id="cInput" placeholder="Enter Celsius">
+    <button onclick="cToF()">Convert</button>
+    <div class="result" id="cResult"></div>
+
+    <h3>2. Fahrenheit to Celsius</h3>
+    <input type="number" id="fInput" placeholder="Enter Fahrenheit">
+    <button onclick="fToC()">Convert</button>
+    <div class="result" id="fResult"></div>
+
+    <h3>3. Meters to Feet</h3>
+    <input type="number" id="mInput" placeholder="Enter Meters">
+    <button onclick="mToFt()">Convert</button>
+    <div class="result" id="mResult"></div>
+
+    <h3>4. Feet to Meters</h3>
+    <input type="number" id="ftInput" placeholder="Enter Feet">
+    <button onclick="ftToM()">Convert</button>
+    <div class="result" id="ftResult"></div>
+  </div>
+
+  <script>
+    function cToF() {
+      let c = parseFloat(document.getElementById("cInput").value);
+      if (isNaN(c)) return;
+      let f = (c * 9 / 5) + 32;
+      document.getElementById("cResult").innerText = c + " °C = " + f.toFixed(2) + " °F";
+    }
+
+    function fToC() {
+      let f = parseFloat(document.getElementById("fInput").value);
+      if (isNaN(f)) return;
+      let c = (f - 32) * 5 / 9;
+      document.getElementById("fResult").innerText = f + " °F = " + c.toFixed(2) + " °C";
+    }
+
+    function mToFt() {
+      let m = parseFloat(document.getElementById("mInput").value);
+      if (isNaN(m)) return;
+      let ft = m * 3.28084;
+      document.getElementById("mResult").innerText = m + " m = " + ft.toFixed(2) + " ft";
+    }
+
+    function ftToM() {
+      let ft = parseFloat(document.getElementById("ftInput").value);
+      if (isNaN(ft)) return;
+      let m = ft / 3.28084;
+      document.getElementById("ftResult").innerText = ft + " ft = " + m.toFixed(2) + " m";
+    }
+  </script>
+</body>
+</html>
