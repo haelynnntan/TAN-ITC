@@ -1,58 +1,165 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CS 1130 - Introduction to Computing</title>
-  <style>
-    body { font-family: Arial, sans-serif; margin: 0; background: #f4f6f9; color: #222; }
-    header { background: #1e3a8a; color: white; padding: 30px 20px; text-align: center; }
-    .container { max-width: 800px; margin: 30px auto; padding: 0 20px; }
-    .card { background: white; padding: 20px; margin-bottom: 16px; border-radius: 8px; box-shadow: 0 2px 6px rgba(0,0,0,0.08); display: flex; justify-content: space-between; align-items: center; }
-    .card h3 { margin: 0 0 6px 0; color: #1e3a8a; }
-    .card p { margin: 0; color: #555; font-size: 14px; }
-    .btn { background: #1e3a8a; color: white; text-decoration: none; padding: 10px 18px; border-radius: 6px; font-weight: bold; }
-    .btn:hover { background: #1d4ed8; }
-  </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My CS 1130 Portfolio</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <header>
-    <h1>CS 1130 - Introduction to Computing</h1>
-    <p>Student Portfolio | Ateneo de Davao University</p>
+
+  <!-- Sticky Navigation -->
+  <nav class="navbar">
+    <div class="logo">YOURNAME<span>.</span></div>
+    <div class="nav-links">
+      <a href="#about">About</a>
+      <a href="#projects">Projects</a>
+      <a href="#education">Education</a>
+      <a href="#skills">Skills</a>
+      <a href="#experience">Experience</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <header class="hero">
+    <div class="eyebrow">HELLO, WORLD! WELCOME TO MY PORTFOLIO</div>
+    <h1>Hi, I'm <span>Your Name.</span></h1>
+    <h2>Where creativity meets code.</h2>
+    <p>
+      I'm an Information Technology student at Ateneo de Davao University
+      exploring web development, problem-solving, and interactive programming.
+    </p>
+    <div class="hero-buttons">
+      <a href="#projects" class="btn btn-primary">Explore My Projects</a>
+      <a href="#about" class="btn btn-secondary">Get to Know Me</a>
+    </div>
   </header>
 
-  <div class="container">
+  <!-- 01 / About -->
+  <section id="about" class="section">
+    <div class="eyebrow">01 / GET TO KNOW ME</div>
+    <h2>About <span>Me.</span></h2>
     <div class="card">
-      <div>
-        <h3>Assignment #1: Unit Conversion</h3>
-        <p>Celsius, Fahrenheit, Meters, and Feet Converter</p>
-      </div>
-      <a class="btn" href="assignment1.html">Open</a>
+      <h3>A little bit about my journey</h3>
+      <p>
+        Write 2–3 short paragraphs about your background, why you chose computing
+        at Ateneo de Davao University, and what interests you outside of class.
+      </p>
     </div>
+  </section>
 
-    <div class="card">
-      <div>
-        <h3>Assignment #2: Income Tax Calculator</h3>
-        <p>Philippine TRAIN Law Annual Income Tax Computation</p>
-      </div>
-      <a class="btn" href="assignment2.html">Open</a>
-    </div>
+  <!-- 02 / Projects -->
+  <section id="projects" class="section">
+    <div class="eyebrow">02 / MY WORK</div>
+    <h2>Programming <span>Projects.</span></h2>
+    <p class="section-desc">
+      A collection of my CS 1130 Introduction to Computing programming assignments.
+    </p>
 
-    <div class="card">
-      <div>
-        <h3>Assignment #3: Loops (First N Natural Numbers)</h3>
-        <p>Factorial (While), Sum (Do-While), and Average (For Loop)</p>
+    <div class="grid-2">
+      <div class="card project-card">
+        <div class="tag">PROJECT 01</div>
+        <h3>Unit Converter</h3>
+        <p>Converts temperatures (Celsius/Fahrenheit) and lengths (Meters/Feet).</p>
+        <a href="converter.html" class="project-link">View Project →</a>
       </div>
-      <a class="btn" href="assignment3.html">Open</a>
-    </div>
 
-    <div class="card">
-      <div>
-        <h3>Assignment #4: Simple Payroll</h3>
-        <p>Employee Payroll Table with Gross Pay, Deductions, and Net Pay</p>
+      <div class="card project-card">
+        <div class="tag">PROJECT 02</div>
+        <h3>Income Tax Calculator</h3>
+        <p>Calculates income tax due based on taxable income brackets.</p>
+        <a href="tax.html" class="project-link">View Project →</a>
       </div>
-      <a class="btn" href="assignment4.html">Open</a>
+
+      <div class="card project-card">
+        <div class="tag">PROJECT 03</div>
+        <h3>Natural Numbers</h3>
+        <p>Computes factorial (while), sum (do-while), and average (for) of N numbers.</p>
+        <a href="numbers.html" class="project-link">View Project →</a>
+      </div>
+
+      <div class="card project-card">
+        <div class="tag">PROJECT 04</div>
+        <h3>Simple Payroll</h3>
+        <p>Manages employee entries and computes gross pay, deductions, and net pay.</p>
+        <a href="payroll.html" class="project-link">View Project →</a>
+      </div>
     </div>
-  </div>
+  </section>
+
+  <!-- 03 / Education -->
+  <section id="education" class="section">
+    <div class="eyebrow">03 / MY ACADEMIC JOURNEY</div>
+    <h2>My <span>Education.</span></h2>
+    <div class="grid-2">
+      <div class="card">
+        <div class="tag">CURRENT</div>
+        <h3>BS Information Technology / Computer Science</h3>
+        <p class="muted">Ateneo de Davao University</p>
+        <p>Developing foundational skills in programming logic, HTML, CSS, and JavaScript.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 04 / Skills & Interests -->
+  <section id="skills" class="section">
+    <div class="eyebrow">04 / WHAT I LOVE DOING</div>
+    <h2>Skills &amp; <span>Interests.</span></h2>
+    <div class="grid-2">
+      <div class="card">
+        <h3>💻 Web Development</h3>
+        <p>Building structured layouts and interactive browser applications.</p>
+        <div class="badges">
+          <span>HTML</span>
+          <span>CSS</span>
+          <span>JavaScript</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>🎨 Creative Interests</h3>
+        <p>Add your personal hobbies, design interests, music, or sports here.</p>
+        <div class="badges">
+          <span>Design</span>
+          <span>Problem Solving</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 05 / Experience -->
+  <section id="experience" class="section">
+    <div class="eyebrow">05 / MY EXPERIENCES</div>
+    <h2>Experience &amp; <span>Growth.</span></h2>
+    <div class="grid-2">
+      <div class="card">
+        <h3>Programming Journey</h3>
+        <p>
+          Gaining hands-on experience building calculators, loops, and dynamic
+          tables through CS 1130 coursework.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 06 / Contact -->
+  <section id="contact" class="section">
+    <div class="eyebrow">06 / LET'S CONNECT</div>
+    <h2>Get in <span>Touch.</span></h2>
+    <div class="card">
+      <h3>Let's create something meaningful.</h3>
+      <p>Check out my source code and follow my progress on GitHub.</p>
+      <a href="https://github.com/your-username" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+        Visit My GitHub
+      </a>
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2026 Your Name</p>
+    <p>Built for CS 1130 — Introduction to Computing.</p>
+  </footer>
+
 </body>
 </html>
