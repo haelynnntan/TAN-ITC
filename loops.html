@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Assignment 3 - Loops</title>
+  <style>
+    body { font-family: Arial, sans-serif; background: #f4f6f9; margin: 0; padding: 20px; }
+    .nav { max-width: 600px; margin: 0 auto 20px; }
+    .nav a { color: #1e3a8a; text-decoration: none; font-weight: bold; }
+    .box { max-width: 600px; margin: 0 auto; background: white; padding: 24px; border-radius: 8px; box-shadow: 0 2px 6px rgba(0,0,0,0.08); }
+    h2 { margin-top: 0; color: #1e3a8a; }
+    input { padding: 10px; width: 180px; margin-right: 10px; border: 1px solid #ccc; border-radius: 4px; }
+    button { padding: 10px 16px; background: #1e3a8a; color: white; border: none; border-radius: 4px; cursor: pointer; }
+    .result { margin-top: 16px; line-height: 1.8; font-weight: bold; }
+  </style>
+</head>
+<body>
+  <div class="nav"><a href="index.html">&larr; Back to Home</a></div>
+
+  <div class="box">
+    <h2>Assignment #3: First N Natural Numbers</h2>
+    <p>Enter a positive integer (N):</p>
+    <input type="number" id="nInput" placeholder="e.g. 5" min="1">
+    <button onclick="calculateLoops()">Calculate</button>
+    <div class="result" id="loopResult"></div>
+  </div>
+
+  <script>
+    function calculateLoops() {
+      let n = parseInt(document.getElementById("nInput").value);
+      if (isNaN(n) || n < 1) {
+        document.getElementById("loopResult").innerText = "Please enter an integer greater than or equal to 1.";
+        return;
+      }
+
+      // 1. Factorial using WHILE loop
+      let factorial = 1;
+      let i = 1;
+      while (i <= n) {
+        factorial *= i;
+        i++;
+      }
+
+      // 2. Sum using DO-WHILE loop
+      let sum = 0;
+      let j = 1;
+      do {
+        sum += j;
+        j++;
+      } while (j <= n);
+
+      // 3. Average using FOR loop
+      let forSum = 0;
+      for (let k = 1; k <= n; k++) {
+        forSum += k;
+      }
+      let average = forSum / n;
+
+      document.getElementById("loopResult").innerHTML =
+        "Factorial (While Loop): " + factorial + "<br>" +
+        "Sum (Do-While Loop): " + sum + "<br>" +
+        "Average (For Loop): " + average.toFixed(2);
+    }
+  </script>
+</body>
+</html>
