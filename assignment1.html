@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Assignment #1 - Unit Converter</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <nav class="navbar">
+    <a href="index.html" class="brand">YourName<span>.ITC</span></a>
+    <div class="nav-tabs">
+      <a href="assignment1.html" class="active">Assignment 1</a>
+      <a href="assignment2.html">Assignment 2</a>
+      <a href="assignment3.html">Assignment 3</a>
+      <a href="assignment4.html">Assignment 4</a>
+    </div>
+  </nav>
+
+  <main class="page-wrapper">
+    <div class="main-card">
+      <h1>Assignment #1: Unit Converter</h1>
+      <p class="subtitle">Convert between Celsius/Fahrenheit and Meters/Feet</p>
+      <hr class="divider" />
+
+      <div class="form-grid">
+        <div class="form-group">
+          <label for="conversionType">Conversion Type</label>
+          <select id="conversionType">
+            <option value="cToF">Celsius (°C) to Fahrenheit (°F)</option>
+            <option value="fToC">Fahrenheit (°F) to Celsius (°C)</option>
+            <option value="mToFt">Meters (m) to Feet (ft)</option>
+            <option value="ftToM">Feet (ft) to Meters (m)</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="inputValue">Enter Value</label>
+          <input type="number" id="inputValue" placeholder="e.g., 100" step="any" />
+        </div>
+      </div>
+
+      <div class="btn-row">
+        <button class="btn btn-primary" onclick="convertUnit()">Convert</button>
+        <button class="btn btn-secondary" onclick="clearConverter()">Clear</button>
+      </div>
+
+      <div class="result-box" id="resultBox">
+        <strong>Converted Value:</strong> <span id="convertedOutput">—</span><br />
+        <small id="formulaUsed" style="color: #475569;">Select a conversion type and enter a number.</small>
+      </div>
+
+      <a href="index.html" class="back-link">← Back to Home</a>
+    </div>
+  </main>
+
+  <script>
+    function convertUnit() {
+      const type = document.getElementById("conversionType").value;
+      const rawValue = document.getElementById("inputValue").value;
+      const output = document.getElementById("convertedOutput");
+      const formulaText = document.getElementById("formulaUsed");
+
+      if (rawValue === "") {
+        output.textContent = "Please enter a valid number.";
+        formulaText.textContent = "";
+        return;
+      }
+
+      const val = parseFloat(rawValue);
+      let result = 0;
+
+      if (type === "cToF") {
+        result = (val * 9 / 5) + 32;
+        output.textContent = `${val} °C = ${result.toFixed(2)} °F`;
+        formulaText.textContent = "Formula: (°C × 9/5) + 32";
+      } else if (type === "fToC") {
+        result = (val - 32) * 5 / 9;
+        output.textContent = `${val} °F = ${result.toFixed(2)} °C`;
+        formulaText.textContent = "Formula: (°F − 32) × 5/9";
+      } else if (type === "mToFt") {
+        result = val * 3.28084;
+        output.textContent = `${val} m = ${result.toFixed(4)} ft`;
+        formulaText.textContent = "Formula: Meters × 3.28084";
+      } else if (type === "ftToM") {
+        result = val / 3.28084;
+        output.textContent = `${val} ft = ${result.toFixed(4)} m`;
+        formulaText.textContent = "Formula: Feet ÷ 3.28084";
+      }
+    }
+
+    function clearConverter() {
+      document.getElementById("inputValue").value = "";
+      document.getElementById("convertedOutput").textContent = "—";
+      document.getElementById("formulaUsed").textContent = "Select a conversion type and enter a number.";
+    }
+  </script>
+
+</body>
+</html>
